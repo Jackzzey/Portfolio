@@ -1,18 +1,15 @@
+import Home from "./pages/Home";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
 function App() {
   return (
-    <div className="">
-      <div className="">
-        <h1 className="text-5xl">
-          Jack McMahon.
-        </h1>
-        <p className="text-xl">
-          Computer science student
-        </p>
-      </div>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />}  />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App;
+export default App
