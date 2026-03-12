@@ -6,8 +6,10 @@ function Navbar (){
     <div className="">
       <nav>
         <Link to="/">Home</Link> | {" "}
-        <Link to="/">About</Link> | {" "}
-        <Link to="/">Contact</Link>
+        <Link to="/projects">projects</Link> | {" "}
+        <Link to="/about">about</Link> | {" "}
+        <Link to="/cv">CV</Link> | {" "}
+        <Link to="/contact">Contact</Link>
       </nav>
     </div>
   )
