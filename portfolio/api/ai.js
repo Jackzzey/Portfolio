@@ -1,17 +1,19 @@
-import { OpenAI } from 'openai/client.js';
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export default async function handler(req, res) {
   try {
+    const HF_TOKEN = process.env.HF_TOKEN;
+
+    if (!HF_TOKEN) {
+      throw new Error("HF_TOKEN is missing");
+    }
+
     const { role } = req.body;
 
-    const prompt = `
-  A recruiter is considering hiring me for the role: ${role}.
+    if (!role) {
+      throw new Error("Role is required");
+    }
 
-Use these facts about me:
+    const prompt = `
+A recruiter is considering hiring me for the role: ${role}.
 
 Skills:
 - Java
@@ -26,20 +28,41 @@ Projects:
 
 Explain why I would be a strong candidate for this role.
 Keep it concise and professional.
-  `;
+`;
 
-    const completion = await client.chat.completions.create({
-      model: 'openai/gpt-oss-20b:nscale',
-      messages: [{ role: 'user', content: prompt }],
-    });
+    const response = await fetch(
+      "https://router.huggingface.co/v1/chat/completions",
+      {
+        headers: {
+          Authorization: `Bearer ${HF_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+          model: "openai/gpt-oss-20b:nscale",
+          max_tokens: 200,
+        }),
+      }
+    );
 
-    res.status(200).json({
-      answer: completion.choices[0].message.content,
-    });
+    const data = await response.json();
+
+    const answer =
+      data?.choices?.[0]?.message?.content || "No response generated";
+
+    res.status(200).json({ answer });
+
   } catch (error) {
-    console.log(error);
+    console.error("API error:", error);
+
     res.status(500).json({
-      error: 'Failed to generate response',
+      error: error.message || "Failed to generate response",
     });
   }
 }
