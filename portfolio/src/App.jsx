@@ -1,5 +1,8 @@
 import Home from "./pages/Home";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import WhyHire from "./pages/WhyHire";
+import Projects from "./pages/Projects";
+import About from "./pages/About";
 
 
 function App() {
@@ -7,6 +10,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}  />
+      <Route path="/WhyHire" element={<WhyHire />} />
       <Route path="/projects" element={<Projects />}>
         <Route path="all" element={<All />} />
         <Route path="backend" element={<Backend />} />

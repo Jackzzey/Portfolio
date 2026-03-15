@@ -1,0 +1,22 @@
+name: Portfolio CI
+
+on:
+  push:
+    branches: [main, dev]
+  
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Buld project
+        run: npm run build
