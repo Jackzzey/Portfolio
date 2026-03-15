@@ -1,6 +1,6 @@
 import { OpenAI } from 'openai/client.js';
 
-const client = newOpenAI({
+const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -28,8 +28,8 @@ Explain why I would be a strong candidate for this role.
 Keep it concise and professional.
   `;
 
-    const completion = await clientInformation.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const completion = await client.chat.completions.create({
+      model: 'openai/gpt-oss-20b:nscale',
       messages: [{ role: 'user', content: prompt }],
     });
 
