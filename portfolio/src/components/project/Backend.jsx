@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Backend() {
-  return (
-    <div>Backend</div>
-  )
+  return <div>Backend</div>;
 }
 
-export default Backend
+export default Backend;

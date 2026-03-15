@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Frontend() {
-  return (
-    <div>Frontend</div>
-  )
+  return <div>Frontend</div>;
 }
 
-export default Frontend
+export default Frontend;

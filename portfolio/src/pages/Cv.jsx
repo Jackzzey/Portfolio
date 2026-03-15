@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Cv() {
-  return (
-    <div>Cv</div>
-  )
+  return <div>Cv</div>;
 }
 
-export default Cv
+export default Cv;

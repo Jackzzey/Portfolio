@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Other() {
-  return (
-    <div>Other</div>
-  )
+  return <div>Other</div>;
 }
 
-export default Other
+export default Other;
