@@ -75,14 +75,7 @@ function WhyHire() {
           <h2 className="text-xl font-semibold">Here's why you should hire me</h2>
           <p>{answer}</p>
 
-          {/* Optional diagram */}
-          {selectedRole && ROLE_DIAGRAMS[selectedRole] && (
-            <img
-              src={ROLE_DIAGRAMS[selectedRole]}
-              alt={`${selectedRole} diagram`}
-              className="mt-4 rounded shadow"
-            />
-          )}
+          
         </div>
       )}
 
