@@ -9,6 +9,7 @@ const ROLES = [
   'Frontend engineer',
   'UI design',
   'IT support',
+  'Anything',
 ];
 
 function WhyHire() {

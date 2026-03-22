@@ -19,20 +19,55 @@ export default async function handler(req, res) {
 
     const prompt = `
 A recruiter is considering hiring me for the role: ${role}.
+Write a compelling, confident, and concise explanation (150–250 words) of why I should be hired for this role.
 
-Skills:
-- Java
-- Python
-- Linux
-- React
-- Docker
-- SQL
+Tone: professional, confident, and slightly persuasive (like a strong internal hiring recommendation).
+
+Instructions:
+- Tailor the response specifically to the role
+- Prioritise the most relevant skills and projects only
+- Avoid generic phrases — use specific evidence
+- Show clear reasoning, not just listing skills
+
+Role-specific focus:
+- Software engineer: programming fundamentals, data structures & algorithms, problem-solving, clean code, and building scalable applications
+- DevOps engineer: Linux systems, Docker, CI/CD pipelines, cloud deployment, automation, infrastructure as code, and system reliability
+- Full stack: end-to-end development, integrating frontend and backend, API design, databases, and delivering complete production-ready systems
+- Backend engineer: server-side logic, API development, database design, performance, scalability, and handling data efficiently
+- Frontend engineer: modern JavaScript, React, responsive design, state management, and building fast, interactive user interfaces
+- UI design: user interface design, usability, visual hierarchy, user experience thinking, and creating intuitive, polished interfaces
+- IT support: troubleshooting, debugging, system maintenance, user support, problem resolution, and clear communication with non-technical users
+- Anything: highlight adaptability, broad technical skillset, fast learning ability, and willingness to take ownership across different areasStructure:
+
+
+- Start with 2–3 strong sentences summarising why I stand out
+- Then use 3–5 concise bullet points highlighting key strengths
+
+Technical Skills:
+Languages: Java, JavaScript, Python, C, R, Haskell, TypeScript  
+Web: HTML, CSS, JavaScript, REST APIs  
+Frameworks: React.js, Node.js, Django, NumPy  
+DevOps: Git, Docker, CI/CD, Linux, Shell Scripting  
+Databases: SQL, MySQL, UML, ER Diagrams
 
 Projects:
-- Custom Unix shell in C
+- DCU Groups: Full-stack system with constraint-based allocation engine, REST API integration, deployed to cloud VPS with nginx + HTTPS
+- Custom Unix Shell in C: supports process forking, I/O redirection, background execution
+- Pizza App: Django full-stack app with authentication and checkout
+- Codey Viber: AI-powered JavaScript code generator using natural language
+- MyScrabbly: TypeScript Scrabble game with drag-and-drop UI, Agile team project
+
+Experience:
+- Odeon Cinemas: customer-facing role demonstrating communication and teamwork
+- Fastway Couriers: logistics, accuracy, and problem-solving under pressure
+
+Achievements:
+- International athlete representing Ireland
+- Leadership captain role in Ballyroan athletics club
 
 Explain why I would be a strong candidate.
 Use short bullet points.
+End with a one-sentence hiring recommendation.
 `;
 
     const response = await fetch(
