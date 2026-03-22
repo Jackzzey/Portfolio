@@ -39,10 +39,6 @@ Role-specific focus:
 - IT support: troubleshooting, debugging, system maintenance, user support, problem resolution, and clear communication with non-technical users
 - Anything: highlight adaptability, broad technical skillset, fast learning ability, and willingness to take ownership across different areasStructure:
 
-
-- Start with 2–3 strong sentences summarising why I stand out
-- Then use 3–5 concise bullet points highlighting key strengths
-
 Technical Skills:
 Languages: Java, JavaScript, Python, C, R, Haskell, TypeScript  
 Web: HTML, CSS, JavaScript, REST APIs  
@@ -65,9 +61,25 @@ Achievements:
 - International athlete representing Ireland
 - Leadership captain role in Ballyroan athletics club
 
-Explain why I would be a strong candidate.
-Use short bullet points.
-End with a one-sentence hiring recommendation.
+Respond ONLY in valid JSON with this structure:
+
+{
+  "summary": "2-3 sentence overview of why hire me",
+  "reasons": ["bullet point", "bullet point", "bullet point"],
+  "projects": [
+    {
+      "name": "project name",
+      "description": "why it's relevant to the role",
+      "link": "url"
+    }
+  ]
+}
+
+Rules:
+- Select ONLY relevant projects for the role
+- Keep it concise
+- No extra text outside JSON
+
 `;
 
     const response = await fetch(

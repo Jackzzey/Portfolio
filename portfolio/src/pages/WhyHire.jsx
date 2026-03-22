@@ -49,7 +49,6 @@ function WhyHire() {
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
       <h1 className="text-3xl font-bold text-center">Hire Me</h1>
-
       {/* Role buttons */}
       <div className="flex flex-wrap gap-3 justify-center">
         {ROLES.map((role) => (
