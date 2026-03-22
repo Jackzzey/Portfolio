@@ -13,14 +13,13 @@ const ROLES = [
 ];
 
 function WhyHire() {
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
 
   async function generateAnswer(role) {
     setSelectedRole(role);
     setLoading(true);
-    setAnswer('');
 
     try {
       const response = `{
@@ -117,29 +116,41 @@ function WhyHire() {
 
       {/* Call to CV / contact */}
       {answer && (
-        <div className="bg-gray-800 text-white p-6 rounded space-y-4">
+        <div className="bg-gray-800 text-white p-6 rounded space-y-6">
 
           {/* Summary */}
-          <p className="text-lg">{answer.summary}</p>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Why Hire Me</h2>
+            <p className="text-gray-300">{answer.summary}</p>
+          </div>
 
           {/* Reasons */}
-          <ul className="list-disc pl-5 space-y-1">
-            {answer.reasons?.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
+          <div>
+            <h3 className="font-semibold">Key Strengths</h3>
+            <ul className="list-disc pl-5 space-y-1 text-gray-300">
+              {answer.reasons.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+          </div>
 
           {/* Projects */}
           <div>
-            <h3 className="font-semibold mt-4">Relevant Projects</h3>
-            {answer.projects?.map((proj, i) => (
-              <div key={i} className="mt-2">
-                <a href={proj.link} target="_blank" className="text-blue-400 underline">
-                  {proj.name}
-                </a>
-                <p className="text-sm text-gray-300">{proj.description}</p>
-              </div>
-            ))}
+            <h3 className="font-semibold">Relevant Projects</h3>
+            <div className="space-y-3 mt-2">
+              {answer.projects.map((proj, i) => (
+                <div key={i} className="bg-gray-700 p-3 rounded">
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    className="text-blue-400 font-medium underline"
+                  >
+                    {proj.name}
+                  </a>
+                  <p className="text-sm text-gray-300">{proj.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
