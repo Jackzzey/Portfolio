@@ -104,15 +104,7 @@ function WhyHire() {
         <div className="text-center text-gray-500 font-medium">Generating response...</div>
       )}
 
-      {/* Answer box */}
-      {answer && (
-        <div className="bg-gray-800 text-white p-6 rounded shadow-lg space-y-4">
-          <h2 className="text-xl font-semibold">Here's why you should hire me</h2>
-          <p>{answer}</p>
 
-
-        </div>
-      )}
 
       {/* Call to CV / contact */}
       {answer && (
