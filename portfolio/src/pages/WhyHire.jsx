@@ -23,24 +23,61 @@ function WhyHire() {
     setAnswer('');
 
     try {
-      const response = await fetch('/api/ai', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ role }),
-      });
+      const response = `{
+      "summary":"As a software engineer, I bring a proven blend of low-level systems mastery and full-stack architectural expertise, consistently delivering clean, scalable solutions that meet complex business requirements.",
+      "reasons":[
+        "Designed and deployed DCU Groups, a constraint-based allocation engine with a robust REST API and secure cloud hosting.",
+        "Built a Custom Unix Shell in C with process forking and I/O redirection.",
+        "Implemented Codey Viber, an AI-driven JavaScript code generator."
+      ],
+      "projects":[
+        {
+          "name":"DCU Groups",
+          "description":"Full-stack system with REST API and cloud deployment.",
+          "link":"https://github.com/yourrepo/DCU-Groups"
+        },
+        {
+          "name":"Custom Unix Shell",
+          "description":"C-based Unix shell with process management.",
+          "link":"https://github.com/yourrepo/Custom-Unix-Shell"
+        },
+        {
+          "name":"Codey Viber",
+          "description":"AI-powered JavaScript code generator.",
+          "link":"https://github.com/yourrepo/Codey-Viber"
+        }
+      ]
+    }`;
 
-      const data = await response.json();
+      //   const response = await fetch('/api/ai', {
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     body: JSON.stringify({ role }),
+      //   });
 
-      if (data.answer) {
-        setAnswer(data.answer);
-      } else if (data.error) {
-        setAnswer(data.error);
-      } else {
-        setAnswer('Unexpected response from server.');
-      }
+      //   const data = await response.json();
+
+      //   if (data.answer) {
+      //     setAnswer(data.answer);
+      //   } else if (data.error) {
+      //     setAnswer(data.error);
+      //   } else {
+      //     setAnswer('Unexpected response from server.');
+      //   }
+      // } catch (err) {
+      //   console.error('Error generating answer:', err);
+      //   setAnswer('Something went wrong while generating the response.');
+      // } finally {
+      //   setLoading(false);
+      // }
+
+
+      const data = JSON.parse(response);
+
+      setAnswer(data);
+
     } catch (err) {
-      console.error('Error generating answer:', err);
-      setAnswer('Something went wrong while generating the response.');
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -55,9 +92,8 @@ function WhyHire() {
           <button
             key={role}
             onClick={() => generateAnswer(role)}
-            className={`px-4 py-2 rounded text-white font-medium ${
-              selectedRole === role ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
-            }`}
+            className={`px-4 py-2 rounded text-white font-medium ${selectedRole === role ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
+              }`}
           >
             {role}
           </button>
@@ -75,26 +111,37 @@ function WhyHire() {
           <h2 className="text-xl font-semibold">Here's why you should hire me</h2>
           <p>{answer}</p>
 
-          
+
         </div>
       )}
 
       {/* Call to CV / contact */}
       {answer && (
-        <div className="flex justify-center gap-4 mt-4">
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
-          >
-            View CV
-          </a>
-          <a
-            href="/contact"
-            className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-          >
-            Contact Me
-          </a>
+        <div className="bg-gray-800 text-white p-6 rounded space-y-4">
+
+          {/* Summary */}
+          <p className="text-lg">{answer.summary}</p>
+
+          {/* Reasons */}
+          <ul className="list-disc pl-5 space-y-1">
+            {answer.reasons?.map((r, i) => (
+              <li key={i}>{r}</li>
+            ))}
+          </ul>
+
+          {/* Projects */}
+          <div>
+            <h3 className="font-semibold mt-4">Relevant Projects</h3>
+            {answer.projects?.map((proj, i) => (
+              <div key={i} className="mt-2">
+                <a href={proj.link} target="_blank" className="text-blue-400 underline">
+                  {proj.name}
+                </a>
+                <p className="text-sm text-gray-300">{proj.description}</p>
+              </div>
+            ))}
+          </div>
+
         </div>
       )}
     </div>
