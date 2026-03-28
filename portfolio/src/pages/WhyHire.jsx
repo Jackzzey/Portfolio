@@ -33,17 +33,17 @@ function WhyHire() {
         {
           "name":"DCU Groups",
           "description":"Full-stack system with REST API and cloud deployment.",
-          "link":"https://github.com/yourrepo/DCU-Groups"
+          "link":"https://github.com/Jackzzey/DCU_Groups"
         },
         {
           "name":"Custom Unix Shell",
           "description":"C-based Unix shell with process management.",
-          "link":"https://github.com/yourrepo/Custom-Unix-Shell"
+          "link":"https://github.com/Jackzzey/CustomShell"
         },
         {
           "name":"Codey Viber",
           "description":"AI-powered JavaScript code generator.",
-          "link":"https://github.com/yourrepo/Codey-Viber"
+          "link":"https://github.com/yourrepo/Codey_Viber"
         }
       ]
     }`;
