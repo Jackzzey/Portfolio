@@ -17,36 +17,36 @@ export default async function handler(req, res) {
     rateLimit.set([]);
 
   }
-}
-const timestamps = rateLimit.get(ip);
 
-const recent = timestamps.filter((t) => now - t < WINDOW);
+  const timestamps = rateLimit.get(ip);
 
-if (recent.length >= LIMIT) {
-  return res.status(429).json({
-    error: "Too many requests. Try again later",
-  });
-}
+  const recent = timestamps.filter((t) => now - t < WINDOW);
 
-recent.push(now);
-rateLimit.set(ip, recent);
-
-
-
-try {
-  const HF_TOKEN = process.env.HF_TOKEN;
-
-  if (!HF_TOKEN) {
-    throw new Error("HF_TOKEN missing");
+  if (recent.length >= LIMIT) {
+    return res.status(429).json({
+      error: "Too many requests. Try again later",
+    });
   }
 
-  const { role } = req.body;
+  recent.push(now);
+  rateLimit.set(ip, recent);
 
-  if (!role) {
-    throw new Error("Role is required");
-  }
 
-  const prompt = `
+
+  try {
+    const HF_TOKEN = process.env.HF_TOKEN;
+
+    if (!HF_TOKEN) {
+      throw new Error("HF_TOKEN missing");
+    }
+
+    const { role } = req.body;
+
+    if (!role) {
+      throw new Error("Role is required");
+    }
+
+    const prompt = `
 A recruiter is considering hiring me for the role: ${role}.
 Write a compelling, confident, and concise explanation (150–250 words) of why I should be hired for this role.
 
@@ -102,45 +102,46 @@ Rules:
 - No extra text outside JSON
 `;
 
-  const response = await fetch(
-    "https://router.huggingface.co/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${HF_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "openai/gpt-oss-20b",
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-      }),
+    const response = await fetch(
+      "https://router.huggingface.co/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${HF_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "openai/gpt-oss-20b",
+          messages: [
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(errorText);
+      throw new Error(errorText);
     }
-  );
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error(errorText);
-    throw new Error(errorText);
+    const data = await response.json();
+
+    const answer =
+      data?.choices?.[0]?.message?.content || "No response generated";
+
+
+
+    res.status(200).json({ answer });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: error.message || "Failed to generate response",
+    });
   }
-
-  const data = await response.json();
-
-  const answer =
-    data?.choices?.[0]?.message?.content || "No response generated";
-
-
-
-  res.status(200).json({ answer });
-
-} catch (error) {
-  console.error(error);
-
-  res.status(500).json({
-    error: error.message || "Failed to generate response",
-  });
 }
