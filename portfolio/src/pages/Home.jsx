@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <div>
@@ -22,14 +24,14 @@ function Home() {
 
           {/* Buttons */}
           <div className="mt-8 flex flex-col items-center gap-4">
-            <a 
-              href="/WhyHire"
+            <Link 
+              to="/WhyHire"
               className="text-2xl font-bold px-8 px-12 py-2 border border-white hover:bg-black/10 rounded-lg transition"
 
             >
               Why Hire Me
 
-            </a>
+            </Link>
             <div className="flex gap-5 justify center">
               <a
               href="/projects"
