@@ -17,6 +17,11 @@ export default async function handler(req, res) {
     rateLimit.set([]);
 
   }
+<<<<<<< HEAD
+=======
+
+const timestamps = rateLimit.get(ip);
+>>>>>>> 3b57272533b0eb80b60aa942377317047da17c31
 
   const timestamps = rateLimit.get(ip);
 
@@ -144,4 +149,5 @@ Rules:
       error: error.message || "Failed to generate response",
     });
   }
+}
 }
