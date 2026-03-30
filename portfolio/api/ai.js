@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     rateLimit.set([]);
 
   }
-}
+
 const timestamps = rateLimit.get(ip);
 
 const recent = timestamps.filter((t) => now - t < WINDOW);
@@ -143,4 +143,5 @@ Rules:
   res.status(500).json({
     error: error.message || "Failed to generate response",
   });
+}
 }
