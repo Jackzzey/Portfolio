@@ -23,7 +23,7 @@ function Home() {
           {/* Buttons */}
           <div className="mt-8 flex flex-col items-center gap-4">
             <a 
-              href="/Whyhire"
+              href="/WhyHire"
               className="text-2xl font-bold px-8 px-12 py-2 border border-white hover:bg-black/10 rounded-lg transition"
 
             >
