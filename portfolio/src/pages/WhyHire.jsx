@@ -68,7 +68,6 @@ function WhyHire() {
 
       let data;
       try {
-
         data = await response.json()
         console.log("AI response", data);
       } catch (err) {
@@ -88,8 +87,6 @@ function WhyHire() {
           reasons: parsed.reasons || [],
           projects: parsed.projects || [],
         });
-      } else if (data.error) {
-        setAnswer(data.error);
       } else {
         setAnswer("Unexpected response from server.");
       }
@@ -191,16 +188,19 @@ function WhyHire() {
           <div>
             <h3 className="font-semibold">Relevant Projects</h3>
             <div className="space-y-3 mt-2">
-              {(answer.projects.map || [])((proj, i) => (
+              {(answer?.projects || []).map((proj, i) => (
                 <div key={i} className="bg-gray-700 p-3 rounded">
                   <a
                     href={proj.link}
                     target="_blank"
+                    rel="noreferrer"
                     className="text-blue-400 font-medium underline"
                   >
                     {proj.name}
                   </a>
-                  <p className="text-sm text-gray-300">{proj.description}</p>
+                  <p className="text-sm text-gray-300">
+                    {proj.description}
+                  </p>
                 </div>
               ))}
             </div>
