@@ -1,3 +1,4 @@
+
 const rateLimit = new Map();
 
 
@@ -14,7 +15,7 @@ export default async function handler(req, res) {
   const LIMIT = 5;
 
   if (!rateLimit.has(ip)) {
-    rateLimit.set([]);
+    rateLimit.set(ip, []);
 
   }
 
@@ -45,7 +46,6 @@ export default async function handler(req, res) {
     if (!role) {
       throw new Error("Role is required");
     }
-
     const prompt = `
 A recruiter is considering hiring me for the role: ${role}.
 Write a compelling, confident, and concise explanation (150–250 words) of why I should be hired for this role.
@@ -129,9 +129,9 @@ Rules:
     }
 
     const data = await response.json();
-
+    console.log("HF response:", data);
     const answer =
-      data?.choices?.[0]?.message?.content || "No response generated";
+      data?.choices?.[0]?.message?.content || data?.generated_text || JSON.stringify(data);
 
 
 
