@@ -26,7 +26,7 @@ export default function Typewriter({ text, speed = 90, onComplete }) {
     }, speed);
 
     return () => clearInterval(interval);
-  }, [text, speed, onComplete]);
+  }, [text, speed, onComplete, started]);
 
 
   return <span>
