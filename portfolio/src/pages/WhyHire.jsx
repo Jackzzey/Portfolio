@@ -78,12 +78,16 @@ function WhyHire() {
       }
 
       if (data.answer) {
-        const safeAnswer = {
-          summary: answer?.summary || "",
-          reasons: Array.isArray(answer?.reasons) ? answer.reasons : [],
-          projects: Array.isArray(answer?.projects) ? answer.projects : [],
-        };
-        setAnswer(safeAnswer);
+        const parsed =
+          typeof data.answer === "string"
+            ? JSON.parse(data.answer)
+            : data.answer;
+
+        setAnswer({
+          summary: parsed.summary || "",
+          reasons: parsed.reasons || [],
+          projects: parsed.projects || [],
+        });
       } else if (data.error) {
         setAnswer(data.error);
       } else {
