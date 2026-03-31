@@ -64,16 +64,27 @@ function WhyHire() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ role }),
-      })
-      const data = await response.json()
-      console.log("AI response", data);
+      });
+
+      let data;
+      try {
+
+        data = await response.json()
+        console.log("AI response", data);
+      } catch (err) {
+        console.error("Failed to parse JSON", err);
+        setAnswer("Server returned invalid response");
+        return;
+      }
+
       if (data.answer) {
         setAnswer(data.answer);
       } else if (data.error) {
         setAnswer(data.error);
       } else {
-        setAnswer('Unexpected response from server.');
+        setAnswer("Unexpected response from server.");
       }
+
     } catch (err) {
       console.error('Error generating answer:', err);
       setAnswer('Something went wrong while generating the response.');
