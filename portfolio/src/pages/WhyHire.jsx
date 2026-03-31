@@ -78,7 +78,12 @@ function WhyHire() {
       }
 
       if (data.answer) {
-        setAnswer(data.answer);
+        const safeAnswer = {
+          summary: answer?.summary || "",
+          reasons: Array.isArray(answer?.reasons) ? answer.reasons : [],
+          projects: Array.isArray(answer?.projects) ? answer.projects : [],
+        };
+        setAnswer(safeAnswer);
       } else if (data.error) {
         setAnswer(data.error);
       } else {
@@ -159,7 +164,7 @@ function WhyHire() {
 
 
       {/* Call to CV / contact */}
-      {answer && (
+      {answer?.summary && (
         <div className="bg-gray-800 text-white p-6 rounded space-y-6">
 
           {/* Summary */}
@@ -172,7 +177,7 @@ function WhyHire() {
           <div>
             <h3 className="font-semibold">Key Strengths</h3>
             <ul className="list-disc pl-5 space-y-1 text-gray-300">
-              {answer.reasons.map((r, i) => (
+              {(answer?.reasons || []).map((r, i) => (
                 <li key={i}>{r}</li>
               ))}
             </ul>
@@ -182,7 +187,7 @@ function WhyHire() {
           <div>
             <h3 className="font-semibold">Relevant Projects</h3>
             <div className="space-y-3 mt-2">
-              {answer.projects.map((proj, i) => (
+              {(answer.projects.map || [])((proj, i) => (
                 <div key={i} className="bg-gray-700 p-3 rounded">
                   <a
                     href={proj.link}
