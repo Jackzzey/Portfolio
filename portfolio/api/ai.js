@@ -139,6 +139,7 @@ Rules:
       answer = JSON.parse(answerRaw);
     } catch (err) {
       console.error("Failed to parse model JSON:", answerRaw);
+      console.log(err);
       answer = {
         summary: answerRaw,
         reasons: []

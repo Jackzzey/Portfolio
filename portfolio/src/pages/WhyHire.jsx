@@ -99,15 +99,15 @@ function WhyHire() {
     }
   }
 
-  // const handleStep1Complete = useCallback(() => {
-  //   setStep(2);
-  // }, []);
-  // const handleStep2Complete = useCallback(() => {
-  //   setStep(3);
-  // }, []);
-  const pass = useCallback(() => {
-    setStep(4);
-  })
+  const handleStep1Complete = useCallback(() => {
+    setStep(2);
+  }, []);
+  const handleStep2Complete = useCallback(() => {
+    setStep(3);
+  }, []);
+  // const pass = useCallback(() => {
+  //   setStep(4);
+  // })
 
 
   return (
@@ -117,16 +117,16 @@ function WhyHire() {
 
         {step >= 1 && <Typewriter
           text="Mr Ai Why should i hire Jack?"
-          // onComplete={handleStep1Complete}
-          onComplete={pass}
+          onComplete={handleStep1Complete}
+          //onComplete={pass}
         />}
       </p>
 
       <p className="text-xl mb-4 text-right">
         {step >= 2 && <Typewriter
           text="What Job do you want to hire him for"
-          // onComplete={handleStep2Complete}
-          onComplete={pass}
+          onComplete={handleStep2Complete}
+          //onComplete={pass}
         />
         }
       </p>
