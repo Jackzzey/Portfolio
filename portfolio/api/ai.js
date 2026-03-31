@@ -130,8 +130,20 @@ Rules:
 
     const data = await response.json();
     console.log("HF response:", data);
-    const answer =
-      data?.choices?.[0]?.message?.content || data?.generated_text || JSON.stringify(data);
+    const answerRaw =
+      data?.choices?.[0]?.message?.content || "{}";
+
+    let answer;
+
+    try {
+      answer = JSON.parse(answerRaw);
+    } catch (err) {
+      console.error("Failed to parse model JSON:", answerRaw);
+      answer = {
+        summary: answerRaw,
+        reasons: []
+      }
+    }
 
 
 
