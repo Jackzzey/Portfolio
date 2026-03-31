@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Typewriter from '../components/Typewriter';
 import { motion } from "framer-motion";
 
@@ -81,6 +81,13 @@ function WhyHire() {
     }
   }
 
+  const handleStep1Complete = useCallback(() => {
+    setStep(2);
+  }, []);
+  const handleStep2Complete = useCallback(() => {
+    setStep(3);
+  }, []);
+
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
@@ -89,14 +96,14 @@ function WhyHire() {
 
         {step >= 1 && <Typewriter
           text="Mr Ai Why should i hire Jack?"
-          onComplete={() => setStep(2)}
+          onComplete={handleStep1Complete}
         />}
       </p>
 
       <p className="text-xl mb-4 text-right">
         {step >= 2 && <Typewriter
           text="What Job do you want to hire him for"
-          onComplete={() => setStep(3)}
+          onComplete={handleStep2Complete}
         />
         }
       </p>

@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 
 export default function Typewriter({ text, speed = 90, onComplete }) {
   const [displayed, setDisplayed] = useState("");
-  const [started, setStarted] = useState(false);
+  //const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     let i = 0;
-    if (started) return;
-    setStarted(true);
+    //if (started) return;
+    //setStarted(true);
 
 
     const interval = setInterval(() => {
@@ -26,7 +26,7 @@ export default function Typewriter({ text, speed = 90, onComplete }) {
     }, speed);
 
     return () => clearInterval(interval);
-  }, [text, speed, onComplete, started]);
+  }, [text, speed, onComplete]);
 
 
   return <span>
