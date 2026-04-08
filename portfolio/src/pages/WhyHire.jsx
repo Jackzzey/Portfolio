@@ -199,7 +199,7 @@ ${selectedRole === role
                 <h3 className="font-semibold">Relevant Projects</h3>
                 <div className="space-y-3 mt-2">
                   {(answer?.projects || []).map((proj, i) => (
-                    <div key={i} className="p-4 rounded-xl border border-gray-200 hover:shadow-md transition">  <a
+                    <div key={i} className="p-4 rounded-xl border border-gray-600 hover:shadow-md transition">  <a
                       href={proj.link}
                       target="_blank"
                       rel="noreferrer"
@@ -222,12 +222,12 @@ ${selectedRole === role
               <p className="text-gray-600 mb-3">
                 Want to see more?
               </p>
-              <a
-                href="/cv"
+              <Link
+                to="/cv"
                 className="inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
               >
                 View CV
-              </a>
+              </Link>
             </div>
           </div>
         )}
