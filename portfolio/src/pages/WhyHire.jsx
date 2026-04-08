@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import Typewriter from '../components/Typewriter';
 import { motion } from "framer-motion";
 import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const ROLES = [
   'Software Engineer',
