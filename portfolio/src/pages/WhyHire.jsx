@@ -200,7 +200,7 @@ ${selectedRole === role
                 <h3 className="font-semibold">Relevant Projects</h3>
                 <div className="space-y-3 mt-2">
                   {(answer?.projects || []).map((proj, i) => (
-                    <div key={i} className="p-4 rounded-xl border border-gray-600 hover:shadow-md transition">  <a
+                    <div key={i} className="p-4 rounded-xl border border-gray-300 hover:shadow-md transition">  <a
                       href={proj.link}
                       target="_blank"
                       rel="noreferrer"
@@ -208,7 +208,7 @@ ${selectedRole === role
                     >
                       {proj.name}
                     </a>
-                      <p className="text-sm text-gray-300">
+                      <p className="text-sm text-gray-600">
                         {proj.description}
                       </p>
                     </div>
