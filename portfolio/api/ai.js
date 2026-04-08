@@ -75,12 +75,13 @@ Frameworks: React.js, Node.js, Django, NumPy
 DevOps: Git, Docker, CI/CD, Linux, Shell Scripting  
 Databases: SQL, MySQL, UML, ER Diagrams
 
-Projects:
-- DCU Groups: Full-stack system with constraint-based allocation engine, REST API integration, deployed to cloud VPS with nginx + HTTPS
-- Custom Unix Shell in C: supports process forking, I/O redirection, background execution
-- Pizza App: Django full-stack app with authentication and checkout
-- Codey Viber: AI-powered JavaScript code generator using natural language
-- MyScrabbly: TypeScript Scrabble game with drag-and-drop UI, Agile team project
+Projects (you MUST choose from this list and return matching objects exactly):
+
+- DCU Groups: Full-stack system with constraint-based allocation engine, REST API integration, deployed to cloud VPS with nginx + HTTPS. Link: https://github.com/Jackzzey/DCU_Groups
+- Custom Unix Shell: C-based Unix shell with process forking, I/O redirection, background execution. Link: https://github.com/Jackzzey/CustomShell
+- Pizza App: Django full-stack app with authentication and checkout. Link: https://github.com/yourusername/pizza-app
+- Codey Viber: AI-powered JavaScript code generator using natural language. Link: https://github.com/yourusername/codey-viber
+- MyScrabbly: TypeScript Scrabble game with drag-and-drop UI, Agile team project. Link: https://github.com/yourusername/myscrabbly
 
 Experience:
 - Odeon Cinemas: customer-facing role demonstrating communication and teamwork
@@ -95,7 +96,16 @@ Respond ONLY in valid JSON with this structure:
 {
   "summary": "2-3 sentence overview of why hire me",
   "reasons": ["bullet point", "bullet point", "bullet point"],
+  "projects": [
+    {
+      "name": "string",
+      "description": "string",
+      "link": "string"
+    }
+  ]
 }
+
+Return ONLY projects that are relevant to the selected role.
 
 Rules:
 - Keep it concise
