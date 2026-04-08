@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Typewriter from '../components/Typewriter';
 import { motion } from "framer-motion";
+import Navbar from '../components/Navbar';
 
 const ROLES = [
   'Software Engineer',
@@ -112,6 +113,7 @@ function WhyHire() {
 
   return (
     <div className="min-h-screen bg-cream text-gray-800">
+      <Navbar />
       <div className="max-w-3xl mx-auto p-6 space-y-8">
 
         <div className="space-y-4">

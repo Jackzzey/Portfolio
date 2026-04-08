@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Home() {
   return (
-    <div>
-      
+    <div
+    className="relative min-h-screen w-full bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/IMG_20210810_143335.jpg')" }}
+    >
+      <div className="absolute inset-0 bg-black/20"></div>
+      <Navbar />
 
       <div
         className="relative min-h-screen w-full bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: "url('/images/IMG_20210810_143335.jpg')" }}
+        //style={{ backgroundImage: "url('/images/IMG_20210810_143335.jpg')" }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/20"></div>
 
         {/* Content */}
         <div className="relative text-center text-white backdrop-blur-md bg-white/10 p-10 rounded-2xl shadow-2xl">
