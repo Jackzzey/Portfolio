@@ -129,16 +129,16 @@ function WhyHire() {
             </div>
 
           )}
-            </div>
+        </div>
 
-          <div className="bg-white p-4 rounded-xl shadow-sm w-fit text-right ml-auto">
-            {step >= 2 && <Typewriter
-              text="What Job do you want to hire him for"
-              onComplete={handleStep2Complete}
-            //onComplete={pass}
-            />
-            }
-          </div>
+        <div className="bg-white p-4 rounded-xl shadow-sm w-fit text-right ml-auto">
+          {step >= 2 && <Typewriter
+            text="What Job do you want to hire him for"
+            onComplete={handleStep2Complete}
+          //onComplete={pass}
+          />
+          }
+        </div>
         {step >= 3 && <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -175,46 +175,60 @@ ${selectedRole === role
 
         {/* Call to CV / contact */}
         {answer?.summary && (
-          <div className="bg-gray-800 text-white p-6 rounded space-y-6">
+          <div className="">
 
-            {/* Summary */}
-            <div>
-              <h2 className="text-xl font-semibold mb-2">Why Hire Me</h2>
-              <p className="text-gray-300">{answer.summary}</p>
-            </div>
+            <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-100">
+              {/* Summary */}
+              <div>
+                <h2 className="text-2xl font-bold mb-2">Why Hire Me</h2>
+                <p className="text-gray-600">{answer.summary}</p>
+              </div>
 
-            {/* Reasons */}
-            <div>
-              <h3 className="font-semibold">Key Strengths</h3>
-              <ul className="list-disc pl-5 space-y-1 text-gray-300">
-                {(answer?.reasons || []).map((r, i) => (
-                  <li key={i}>{r}</li>
-                ))}
-              </ul>
-            </div>
+              {/* Reasons */}
+              <div>
+                <h3 className="font-semibold">Key Strengths</h3>
+                <ul className="list-disc pl-5 space-y-1 text-gray-600">
+                  {(answer?.reasons || []).map((r, i) => (
+                    <li key={i}>{r}</li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Projects */}
-            <div>
-              <h3 className="font-semibold">Relevant Projects</h3>
-              <div className="space-y-3 mt-2">
-                {(answer?.projects || []).map((proj, i) => (
-                  <div key={i} className="bg-gray-700 p-3 rounded">
-                    <a
+              {/* Projects */}
+              <div>
+                <h3 className="font-semibold">Relevant Projects</h3>
+                <div className="space-y-3 mt-2">
+                  {(answer?.projects || []).map((proj, i) => (
+                    <div key={i} className="p-4 rounded-xl border border-gray-200 hover:shadow-md transition">  <a
                       href={proj.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-blue-400 font-medium underline"
+                      className="text-green-700 font-medium hover:underline"
                     >
                       {proj.name}
                     </a>
-                    <p className="text-sm text-gray-300">
-                      {proj.description}
-                    </p>
-                  </div>
-                ))}
+                      <p className="text-sm text-gray-300">
+                        {proj.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
+
             </div>
 
+
+            <div className="text-center pt-4">
+              <p className="text-gray-600 mb-3">
+                Want to see more?
+              </p>
+              <a
+                href="/cv"
+                className="inline-block bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
+              >
+                View CV
+              </a>
+            </div>
           </div>
         )}
       </div>
